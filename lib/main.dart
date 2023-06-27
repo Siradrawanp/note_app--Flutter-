@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:note_app/utilities/shared_preferences.dart';
 import 'pages/login_page.dart';
+import 'utilities/user_shared_preferences.dart';
 
 void main() async {
   await UserSharedPreferences.init;
