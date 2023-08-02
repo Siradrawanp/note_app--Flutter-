@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:note_app/pages/home_page.dart';
 import 'pages/login_page.dart';
 import 'utilities/user_shared_preferences.dart';
 
 void main() async {
-  await UserSharedPreferences.init;
+  WidgetsFlutterBinding.ensureInitialized();
+  await UserSharedPreferences.init();
   runApp(const MyApp());
 }
 
@@ -18,7 +20,12 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
         useMaterial3: true,
       ),
-      home: const LoginPage(),
+      debugShowCheckedModeBanner: false,
+      initialRoute: '/loginPage',
+      routes: {
+        '/loginPage':(context) => const LoginPage(),
+        '/homePage':(context) => const HomePage()
+      },
     );
   }
 }
