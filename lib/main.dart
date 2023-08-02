@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:note_app/pages/home_page.dart';
+import 'package:note_app/pages/note_form_page.dart';
+
+import 'pages/home_page.dart';
 import 'pages/login_page.dart';
 import 'utilities/user_shared_preferences.dart';
 
@@ -24,7 +26,8 @@ class MyApp extends StatelessWidget {
       initialRoute: '/loginPage',
       routes: {
         '/loginPage':(context) => const LoginPage(),
-        '/homePage':(context) => const HomePage()
+        '/homePage':(context) => const HomePage(),
+        '/noteFormPage':(context) => const NoteFormPage(),
       },
     );
   }

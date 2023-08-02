@@ -11,6 +11,25 @@ class CardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Card(
+      color: Colors.amber.shade300,
+      child: Container(
+        constraints: const BoxConstraints(
+          minHeight: 150,
+        ),
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Text(
+              note.title,
+              style: const TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.w600
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
