@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:note_app/widgets/card_widget.dart';
-import '../utilities/note_dummy.dart';
+import '../models/note_model.dart';
+import '../utilities/note_db.dart';
+import '../widgets/card_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -10,14 +11,47 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<Note> listNotes = [];
+  bool isLoading = false;
+
+  Future readAllNotes() async {
+    setState(() {
+      isLoading = true;
+    });
+    listNotes = await NoteDatabase.instance.readAllNotes();
+    setState(() {
+      isLoading = false;
+    });
+  }
+
+  @override
+  void initState() {
+    readAllNotes();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    NoteDatabase.instance.closeDb();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Note Collection'),
+        title: const Text(
+          'Note Collection',
+          style: TextStyle(
+            color: Colors.deepOrangeAccent,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
         automaticallyImplyLeading: false,
       ),
-      body: Padding(
+      body: isLoading ? const Center(
+        child: CircularProgressIndicator(),
+      ) : Padding(
         padding: const EdgeInsets.all(8.0),
         child: GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -26,14 +60,18 @@ class _HomePageState extends State<HomePage> {
             crossAxisSpacing: 8,
           ), 
           itemBuilder: (context, index) {
-            return CardWidget(note: notes[index]);
+            return CardWidget(note: listNotes[index]);
           },
-          itemCount: notes.length,
+          itemCount: listNotes.length,
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(Icons.add),
+        onPressed: () async {
+          await Navigator.of(context).pushNamed('/noteFormPage');
+          readAllNotes();
+        },
+        backgroundColor: Colors.deepOrangeAccent,
+        child: const Icon(Icons.add, color: Colors.white,),
       ),
     );
   }

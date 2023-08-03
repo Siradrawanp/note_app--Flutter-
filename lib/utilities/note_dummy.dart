@@ -1,6 +1,6 @@
 import '../models/note_model.dart';
 
-List<Note> notes = [
+List<Note> notesDummy = [
   Note(
     id: 1,
     title: 'Math', 

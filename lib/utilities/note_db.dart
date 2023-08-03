@@ -1,6 +1,7 @@
-import 'package:note_app/models/note_model.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+
+import '../models/note_model.dart';
 
 class NoteDatabase {
   NoteDatabase._init();
@@ -18,12 +19,12 @@ class NoteDatabase {
 
   Future _createDb(Database db, int version) async {
     await db.execute('''
-      CREATE TABLE $tableName {
+      CREATE TABLE $tableName (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         title TEXT NOT NULL,
         description TEXT NOT NULL,
-        time TEXT NOT NULL,
-      }
+        time TEXT NOT NULL
+      )
     ''');
   }
 
