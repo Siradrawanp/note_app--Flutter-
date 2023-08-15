@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:note_app/pages/detail_page.dart';
 import 'package:note_app/pages/note_form_page.dart';
 
 import 'pages/home_page.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         '/loginPage':(context) => const LoginPage(),
         '/homePage':(context) => const HomePage(),
         '/noteFormPage':(context) => const NoteFormPage(),
+        '/detailPage':(context) => const DetailPage(),
       },
     );
   }
