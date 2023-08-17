@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:note_app/pages/detail_page.dart';
-import 'package:note_app/pages/note_form_page.dart';
 
+import 'pages/detail_page.dart';
 import 'pages/home_page.dart';
 import 'pages/login_page.dart';
+import 'pages/note_form_page.dart';
 import 'utilities/user_shared_preferences.dart';
 
 void main() async {

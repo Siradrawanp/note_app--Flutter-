@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:note_app/pages/note_form_page.dart';
-import 'package:note_app/utilities/note_db.dart';
 
 import '../models/note_model.dart';
+import '../utilities/note_db.dart';
+import 'note_form_page.dart';
 
 class DetailArguments {
   final Note note;
@@ -32,13 +32,14 @@ class _DetailPageState extends State<DetailPage> {
 
   Future refreshNote(Note note) async {
     // currNote = await NoteDatabase.instance.readNote(currNote.id!);
-    currNote = note;
-    setState(() {});
+    setState(() {
+      currNote = note;
+    });
   }   
 
   @override
   Widget build(BuildContext context) {
-    final args = ModalRoute.of(context)!.settings.arguments as DetailArguments;
+    var args = ModalRoute.of(context)!.settings.arguments as DetailArguments;
     setState(() {
       currNote = args.note;
     });
@@ -60,7 +61,9 @@ class _DetailPageState extends State<DetailPage> {
                   note: currNote,
                 );
               }));
-              refreshNote(args.note);
+              // var resp = ModalRoute.of(context)!.settings.arguments as DetailArguments;
+              var resp = await NoteDatabase.instance.readNote(currNote.id!);              
+              refreshNote(resp);
             },
             child: const Icon(
               Icons.edit_note_rounded,

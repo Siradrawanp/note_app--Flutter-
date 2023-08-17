@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:note_app/pages/detail_page.dart';
 
 import '../models/note_model.dart';
 import '../utilities/note_db.dart';
+import 'detail_page.dart';
 
 class NoteFormPage extends StatefulWidget {
   final Note? note;

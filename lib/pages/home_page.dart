@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:note_app/pages/detail_page.dart';
+
 import '../models/note_model.dart';
 import '../utilities/note_db.dart';
 import '../widgets/card_widget.dart';
+import 'detail_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
